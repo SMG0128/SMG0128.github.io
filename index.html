@@ -35,51 +35,89 @@
       <p class="eyebrow">Developer Universe</p>
       <div class="ribbon-stage" aria-label="YZW">
         <svg class="ribbon-svg" viewBox="0 0 980 430" role="img" aria-labelledby="ribbon-title">
-          <title id="ribbon-title">YZW Ribbon Typography</title>
+          <title id="ribbon-title">YZW Ribbon Sculpture Typography</title>
           <defs>
-            <linearGradient id="ribbon-core" x1="0%" y1="18%" x2="100%" y2="82%">
-              <stop offset="0%" stop-color="#ffffff"/>
-              <stop offset="18%" stop-color="#91f2ff"/>
-              <stop offset="38%" stop-color="#8aa4ff"/>
-              <stop offset="58%" stop-color="#f2b4ff"/>
-              <stop offset="78%" stop-color="#ffffff"/>
-              <stop offset="100%" stop-color="#a7ffd6"/>
+            <linearGradient id="ribbon-face" x1="4%" y1="7%" x2="96%" y2="92%">
+              <stop offset="0%" stop-color="#f9fdff"/>
+              <stop offset="18%" stop-color="#8feaff"/>
+              <stop offset="39%" stop-color="#879eff"/>
+              <stop offset="61%" stop-color="#f0b4ff"/>
+              <stop offset="82%" stop-color="#ffffff"/>
+              <stop offset="100%" stop-color="#a8f7d1"/>
             </linearGradient>
-            <linearGradient id="ribbon-edge" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stop-color="rgba(255,255,255,0.95)"/>
-              <stop offset="42%" stop-color="rgba(255,255,255,0.18)"/>
-              <stop offset="100%" stop-color="rgba(255,255,255,0.78)"/>
+            <linearGradient id="ribbon-shadow" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#586cff"/>
+              <stop offset="55%" stop-color="#3e6282"/>
+              <stop offset="100%" stop-color="#10212d"/>
+            </linearGradient>
+            <linearGradient id="ribbon-fold" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="rgba(255,255,255,0.72)"/>
+              <stop offset="36%" stop-color="rgba(143,234,255,0.42)"/>
+              <stop offset="66%" stop-color="rgba(55,65,110,0.48)"/>
+              <stop offset="100%" stop-color="rgba(255,255,255,0.28)"/>
+            </linearGradient>
+            <linearGradient id="ribbon-glint" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="rgba(255,255,255,0)"/>
+              <stop offset="45%" stop-color="rgba(255,255,255,0.92)"/>
+              <stop offset="100%" stop-color="rgba(255,255,255,0)"/>
             </linearGradient>
             <filter id="ribbon-glow" x="-30%" y="-40%" width="160%" height="180%">
-              <feGaussianBlur in="SourceGraphic" stdDeviation="11" result="blur"/>
-              <feColorMatrix in="blur" type="matrix" values="0 0 0 0 0.55 0 0 0 0 0.9 0 0 0 0 1 0 0 0 0.58 0" result="glow"/>
+              <feGaussianBlur in="SourceGraphic" stdDeviation="9" result="blur"/>
+              <feColorMatrix in="blur" type="matrix" values="0 0 0 0 0.58 0 0 0 0 0.88 0 0 0 0 1 0 0 0 0.48 0" result="glow"/>
               <feMerge>
                 <feMergeNode in="glow"/>
                 <feMergeNode in="SourceGraphic"/>
               </feMerge>
             </filter>
             <filter id="glass-refraction" x="-12%" y="-18%" width="124%" height="136%">
-              <feTurbulence type="fractalNoise" baseFrequency="0.012 0.036" numOctaves="2" seed="12" result="noise"/>
-              <feDisplacementMap in="SourceGraphic" in2="noise" scale="10" xChannelSelector="R" yChannelSelector="G"/>
+              <feTurbulence type="fractalNoise" baseFrequency="0.008 0.024" numOctaves="2" seed="12" result="noise"/>
+              <feDisplacementMap in="SourceGraphic" in2="noise" scale="5" xChannelSelector="R" yChannelSelector="G"/>
             </filter>
           </defs>
-          <g class="ribbon-depth" fill="none" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M88 70 C148 138 180 172 234 220 C278 165 315 118 362 70" />
-            <path d="M234 220 C226 268 218 318 206 372" />
-            <path d="M438 84 C518 78 598 76 674 84 C605 162 543 232 468 338 C544 350 626 352 704 340" />
-            <path d="M742 78 C766 166 786 252 812 350 C842 260 874 168 908 76 C932 166 952 254 978 350" />
+
+          <g class="ribbon-cast">
+            <path d="M74 104 L122 62 L238 182 L338 62 L388 104 L274 238 L246 372 L178 372 L205 238 Z"/>
+            <path d="M420 78 L692 78 L692 136 L535 306 L704 306 L704 370 L410 370 L410 312 L568 142 L420 142 Z"/>
+            <path d="M730 70 L792 70 L832 262 L892 72 L946 72 L880 370 L820 370 L778 184 L728 370 L668 370 Z"/>
           </g>
-          <g class="ribbon-main" fill="none" stroke-linecap="round" stroke-linejoin="round" filter="url(#glass-refraction)">
-            <path d="M88 70 C148 138 180 172 234 220 C278 165 315 118 362 70" />
-            <path d="M234 220 C226 268 218 318 206 372" />
-            <path d="M438 84 C518 78 598 76 674 84 C605 162 543 232 468 338 C544 350 626 352 704 340" />
-            <path d="M742 78 C766 166 786 252 812 350 C842 260 874 168 908 76 C932 166 952 254 978 350" />
+
+          <g class="ribbon-sculpture" filter="url(#glass-refraction)">
+            <path class="ribbon-segment ribbon-back" d="M74 104 L122 62 L238 182 L209 238 Z"/>
+            <path class="ribbon-segment ribbon-front" d="M338 62 L388 104 L274 238 L238 182 Z"/>
+            <path class="ribbon-fold-panel" d="M209 238 L238 182 L274 238 L246 266 Z"/>
+            <path class="ribbon-segment ribbon-front" d="M209 238 L274 238 L246 372 L178 372 Z"/>
+
+            <path class="ribbon-segment ribbon-front" d="M420 78 L692 78 L692 136 L420 142 Z"/>
+            <path class="ribbon-segment ribbon-back" d="M620 118 L692 136 L535 306 L466 310 Z"/>
+            <path class="ribbon-fold-panel" d="M466 310 L535 306 L502 342 L410 312 Z"/>
+            <path class="ribbon-segment ribbon-front" d="M410 312 L704 306 L704 370 L410 370 Z"/>
+
+            <path class="ribbon-segment ribbon-back" d="M730 70 L792 70 L832 262 L800 322 Z"/>
+            <path class="ribbon-fold-panel" d="M800 322 L832 262 L858 370 L820 370 Z"/>
+            <path class="ribbon-segment ribbon-front" d="M832 262 L892 72 L946 72 L880 370 L858 370 Z"/>
+            <path class="ribbon-segment ribbon-front" d="M668 370 L730 70 L792 70 L728 370 Z"/>
           </g>
-          <g class="ribbon-highlight" fill="none" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M104 76 C164 132 192 166 232 202" />
-            <path d="M460 100 C520 94 580 94 642 100" />
-            <path d="M760 92 C778 154 790 214 806 274" />
-            <path d="M922 96 C936 158 948 218 964 280" />
+
+          <g class="ribbon-edges">
+            <path d="M91 107 L123 79 L232 192"/>
+            <path d="M351 89 L272 223"/>
+            <path d="M226 254 L203 350"/>
+            <path d="M437 101 L663 100"/>
+            <path d="M650 137 L506 294"/>
+            <path d="M438 331 L676 328"/>
+            <path d="M749 94 L807 345"/>
+            <path d="M914 98 L868 342"/>
+            <path d="M689 350 L744 92"/>
+          </g>
+
+          <g class="ribbon-reflections">
+            <path d="M118 84 L224 195"/>
+            <path d="M335 90 L262 216"/>
+            <path d="M452 102 L664 100"/>
+            <path d="M636 150 L511 288"/>
+            <path d="M444 332 L675 327"/>
+            <path d="M746 96 L802 337"/>
+            <path d="M907 100 L866 336"/>
           </g>
         </svg>
       </div>
