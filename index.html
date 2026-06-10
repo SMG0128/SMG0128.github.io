@@ -33,7 +33,57 @@
 
     <div class="hero-content">
       <p class="eyebrow">Developer Universe</p>
-      <h1 class="liquid-title" aria-label="Yip Zi Wun">YIP ZI WUN</h1>
+      <div class="ribbon-stage" aria-label="YZW">
+        <svg class="ribbon-svg" viewBox="0 0 980 430" role="img" aria-labelledby="ribbon-title">
+          <title id="ribbon-title">YZW Ribbon Typography</title>
+          <defs>
+            <linearGradient id="ribbon-core" x1="0%" y1="18%" x2="100%" y2="82%">
+              <stop offset="0%" stop-color="#ffffff"/>
+              <stop offset="18%" stop-color="#91f2ff"/>
+              <stop offset="38%" stop-color="#8aa4ff"/>
+              <stop offset="58%" stop-color="#f2b4ff"/>
+              <stop offset="78%" stop-color="#ffffff"/>
+              <stop offset="100%" stop-color="#a7ffd6"/>
+            </linearGradient>
+            <linearGradient id="ribbon-edge" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="rgba(255,255,255,0.95)"/>
+              <stop offset="42%" stop-color="rgba(255,255,255,0.18)"/>
+              <stop offset="100%" stop-color="rgba(255,255,255,0.78)"/>
+            </linearGradient>
+            <filter id="ribbon-glow" x="-30%" y="-40%" width="160%" height="180%">
+              <feGaussianBlur in="SourceGraphic" stdDeviation="11" result="blur"/>
+              <feColorMatrix in="blur" type="matrix" values="0 0 0 0 0.55 0 0 0 0 0.9 0 0 0 0 1 0 0 0 0.58 0" result="glow"/>
+              <feMerge>
+                <feMergeNode in="glow"/>
+                <feMergeNode in="SourceGraphic"/>
+              </feMerge>
+            </filter>
+            <filter id="glass-refraction" x="-12%" y="-18%" width="124%" height="136%">
+              <feTurbulence type="fractalNoise" baseFrequency="0.012 0.036" numOctaves="2" seed="12" result="noise"/>
+              <feDisplacementMap in="SourceGraphic" in2="noise" scale="10" xChannelSelector="R" yChannelSelector="G"/>
+            </filter>
+          </defs>
+          <g class="ribbon-depth" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M88 70 C148 138 180 172 234 220 C278 165 315 118 362 70" />
+            <path d="M234 220 C226 268 218 318 206 372" />
+            <path d="M438 84 C518 78 598 76 674 84 C605 162 543 232 468 338 C544 350 626 352 704 340" />
+            <path d="M742 78 C766 166 786 252 812 350 C842 260 874 168 908 76 C932 166 952 254 978 350" />
+          </g>
+          <g class="ribbon-main" fill="none" stroke-linecap="round" stroke-linejoin="round" filter="url(#glass-refraction)">
+            <path d="M88 70 C148 138 180 172 234 220 C278 165 315 118 362 70" />
+            <path d="M234 220 C226 268 218 318 206 372" />
+            <path d="M438 84 C518 78 598 76 674 84 C605 162 543 232 468 338 C544 350 626 352 704 340" />
+            <path d="M742 78 C766 166 786 252 812 350 C842 260 874 168 908 76 C932 166 952 254 978 350" />
+          </g>
+          <g class="ribbon-highlight" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M104 76 C164 132 192 166 232 202" />
+            <path d="M460 100 C520 94 580 94 642 100" />
+            <path d="M760 92 C778 154 790 214 806 274" />
+            <path d="M922 96 C936 158 948 218 964 280" />
+          </g>
+        </svg>
+      </div>
+      <h1 class="hero-name">YIP ZI WUN</h1>
       <div class="identity-shell" aria-live="polite">
         <span class="identity-prefix">Currently</span>
         <span class="identity-window">
