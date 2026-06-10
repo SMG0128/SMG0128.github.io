@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Yip Zi Wun Universe</title>
+  <meta name="description" content="Yip Zi Wun Universe - Building my own universe, one project at a time.">
+  <meta property="og:title" content="Yip Zi Wun Universe">
+  <meta property="og:description" content="A personal digital space for growth, creation, and project-driven exploration.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://smg0128.github.io">
+  <meta property="og:site_name" content="Yip Zi Wun Universe">
+  <link rel="preconnect" href="https://api.github.com">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="space-field" aria-hidden="true">
+    <span class="orb orb-a"></span>
+    <span class="orb orb-b"></span>
+    <span class="orb orb-c"></span>
+    <canvas id="particle-canvas"></canvas>
+  </div>
+
+  <header class="hero" id="top">
+    <nav class="nav glass-panel" aria-label="Primary">
+      <a class="brand" href="#top">YZW</a>
+      <div class="nav-links">
+        <a href="#mission">Mission</a>
+        <a href="#projects">Projects</a>
+        <a href="#github">GitHub</a>
+      </div>
+    </nav>
+
+    <div class="hero-content">
+      <p class="eyebrow">Developer Universe</p>
+      <h1 class="liquid-title" aria-label="Yip Zi Wun">YIP ZI WUN</h1>
+      <div class="identity-shell" aria-live="polite">
+        <span class="identity-prefix">Currently</span>
+        <span class="identity-window">
+          <span id="dynamic-identity">Student Developer</span>
+        </span>
+      </div>
+    </div>
+
+    <a class="handle glass-panel" href="https://github.com/SMG0128" target="_blank" rel="noreferrer">@SMG0128</a>
+    <div class="scroll-hint" aria-hidden="true"></div>
+  </header>
+
+  <main>
+    <section class="quote-section reveal">
+      <p class="main-quote">Building my own universe,<br>one project at a time.</p>
+    </section>
+
+    <section class="dashboard-grid" aria-label="Life and mission dashboard">
+      <article class="glass-card counter-card reveal">
+        <p class="card-kicker">Life Counter</p>
+        <div class="counter-row">
+          <div class="counter-item">
+            <span id="days-since-birth" class="counter-number">--</span>
+            <span class="counter-label">Days Since Birth</span>
+          </div>
+          <div class="counter-item">
+            <span id="days-until-graduation" class="counter-number">--</span>
+            <span class="counter-label">Days Until Graduation</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="glass-card mission-card reveal" id="mission">
+        <p class="card-kicker">Current Mission</p>
+        <h2>EEG Health Monitoring System</h2>
+        <p>Embedded Design Competition</p>
+        <div class="progress-track" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="72">
+          <span id="mission-progress-bar"></span>
+        </div>
+        <div class="progress-meta">
+          <span>Version 1</span>
+          <strong id="mission-progress-label">72%</strong>
+        </div>
+      </article>
+    </section>
+
+    <section class="project-section reveal" id="projects">
+      <div class="section-heading">
+        <p class="card-kicker">Project Universe</p>
+        <h2>Every project is a branch,<br>every branch tells a story.</h2>
+      </div>
+
+      <div class="universe-map" aria-label="Project nodes around Yip Zi Wun">
+        <div class="orbit orbit-one"></div>
+        <div class="orbit orbit-two"></div>
+        <div class="node node-core">YIP ZI WUN</div>
+        <div class="node project-node eeg">EEG Health</div>
+        <div class="node project-node english">English Learning App</div>
+        <div class="node ghost-node future-a" aria-hidden="true"></div>
+        <div class="node ghost-node future-b" aria-hidden="true"></div>
+      </div>
+    </section>
+
+    <section class="github-section reveal" id="github">
+      <div class="section-heading compact">
+        <p class="card-kicker">GitHub Dashboard</p>
+        <h2>Signals from SMG0128</h2>
+      </div>
+
+      <div class="github-grid">
+        <article class="glass-card stat-card">
+          <span id="repo-count" class="stat-number">--</span>
+          <span class="stat-label">Public Repositories</span>
+        </article>
+        <article class="glass-card stat-card">
+          <span id="followers-count" class="stat-number">--</span>
+          <span class="stat-label">Followers</span>
+        </article>
+        <article class="glass-card stat-card">
+          <span id="following-count" class="stat-number">--</span>
+          <span class="stat-label">Following</span>
+        </article>
+      </div>
+      <p id="github-status" class="github-status">Loading GitHub signal...</p>
+    </section>
+
+    <section class="stack-section reveal" aria-label="Current technology stack">
+      <p class="card-kicker">Current Stack</p>
+      <div class="stack-marquee">
+        <div class="stack-track" id="stack-track">
+          <span>C++</span>
+          <span>OpenHarmony</span>
+          <span>Orange Pi</span>
+          <span>BearPi</span>
+          <span>KS1092</span>
+          <span>NearLink</span>
+          <span>ArkUI</span>
+          <span>GitHub</span>
+          <span>Qwen</span>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <span>&copy; 2026 Yip Zi Wun</span>
+    <span>Building my own universe.</span>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
