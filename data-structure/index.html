@@ -1,0 +1,1555 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>数据结构与算法 2026 复习训练</title>
+  <style>
+    :root {
+      --bg: #f7f8f3;
+      --panel: #ffffff;
+      --ink: #17212b;
+      --muted: #65717d;
+      --line: #dfe5df;
+      --blue: #0054cb;
+      --teal: #0b7a75;
+      --red: #b33a3a;
+      --gold: #9a6a00;
+      --green: #2f7d32;
+      --violet: #6a4bb6;
+      --shadow: 0 18px 48px rgba(22, 32, 43, .12);
+      --radius: 8px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        linear-gradient(180deg, rgba(0, 84, 203, .07), transparent 360px),
+        var(--bg);
+      font-family: "Microsoft YaHei", "PingFang SC", "Noto Sans CJK SC", Arial, sans-serif;
+      line-height: 1.55;
+    }
+
+    button, input, select, textarea {
+      font: inherit;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .shell {
+      width: min(1240px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 24px 0 56px;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      border-bottom: 1px solid rgba(31, 46, 61, .08);
+      background: rgba(247, 248, 243, .9);
+      backdrop-filter: blur(14px);
+    }
+
+    .topbar-inner {
+      width: min(1240px, calc(100% - 32px));
+      height: 64px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+    }
+
+    .brand-mark {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      display: grid;
+      place-items: center;
+      color: white;
+      background: linear-gradient(135deg, var(--blue), var(--teal));
+      box-shadow: 0 10px 24px rgba(0, 84, 203, .22);
+    }
+
+    .brand-mark svg {
+      width: 22px;
+      height: 22px;
+    }
+
+    .brand h1 {
+      margin: 0;
+      font-size: 17px;
+      letter-spacing: 0;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .brand p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      overflow-x: auto;
+      padding-bottom: 2px;
+    }
+
+    .nav a {
+      min-height: 36px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 12px;
+      border: 1px solid transparent;
+      border-radius: 999px;
+      color: #2f3d4a;
+      font-size: 14px;
+      white-space: nowrap;
+    }
+
+    .nav a:hover {
+      border-color: var(--line);
+      background: #fff;
+    }
+
+    .hero {
+      min-height: 340px;
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(360px, .95fr);
+      gap: 22px;
+      align-items: stretch;
+      padding: 26px 0 18px;
+    }
+
+    .hero-main {
+      padding: 28px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, .86);
+      box-shadow: var(--shadow);
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 14px;
+      color: var(--teal);
+      font-weight: 700;
+      font-size: 13px;
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--teal);
+    }
+
+    .hero h2 {
+      margin: 0;
+      max-width: 760px;
+      font-size: clamp(30px, 4.5vw, 56px);
+      line-height: 1.05;
+      letter-spacing: 0;
+    }
+
+    .hero-copy {
+      max-width: 720px;
+      margin: 18px 0 0;
+      color: #3d4b56;
+      font-size: 17px;
+    }
+
+    .exam-grid {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(90px, 1fr));
+      gap: 10px;
+      margin-top: 24px;
+    }
+
+    .exam-tile {
+      min-height: 88px;
+      padding: 14px 12px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: #fbfcfb;
+    }
+
+    .exam-tile strong {
+      display: block;
+      font-size: 22px;
+      line-height: 1;
+    }
+
+    .exam-tile span {
+      display: block;
+      margin-top: 9px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .hero-visual {
+      position: relative;
+      min-height: 340px;
+      overflow: hidden;
+      border: 1px solid #d4ded8;
+      border-radius: var(--radius);
+      background:
+        linear-gradient(145deg, rgba(0, 84, 203, .11), rgba(11, 122, 117, .08)),
+        #fff;
+      box-shadow: var(--shadow);
+    }
+
+    .hero-visual svg {
+      width: 100%;
+      height: 100%;
+      min-height: 340px;
+      display: block;
+    }
+
+    .section {
+      margin-top: 26px;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 14px;
+    }
+
+    .section h3 {
+      margin: 0;
+      font-size: 26px;
+      letter-spacing: 0;
+    }
+
+    .section-note {
+      max-width: 650px;
+      margin: 4px 0 0;
+      color: var(--muted);
+    }
+
+    .toolbar {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .input, .select {
+      min-height: 40px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: #fff;
+      color: var(--ink);
+      padding: 0 12px;
+      outline: none;
+    }
+
+    .input {
+      min-width: 220px;
+    }
+
+    .select {
+      min-width: 160px;
+    }
+
+    .btn {
+      min-height: 40px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: #fff;
+      color: var(--ink);
+      padding: 0 14px;
+      cursor: pointer;
+      transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease;
+    }
+
+    .btn:hover {
+      border-color: #b8c4c0;
+      box-shadow: 0 8px 18px rgba(22, 32, 43, .08);
+      transform: translateY(-1px);
+    }
+
+    .btn.primary {
+      border-color: var(--blue);
+      color: #fff;
+      background: var(--blue);
+    }
+
+    .btn.icon {
+      width: 40px;
+      padding: 0;
+    }
+
+    .btn svg {
+      width: 18px;
+      height: 18px;
+      flex: none;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: 260px minmax(0, 1fr);
+      gap: 18px;
+      align-items: start;
+    }
+
+    .side {
+      position: sticky;
+      top: 84px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: #fff;
+      overflow: hidden;
+    }
+
+    .side-title {
+      padding: 15px 16px;
+      border-bottom: 1px solid var(--line);
+      font-weight: 800;
+    }
+
+    .chapter-list {
+      display: grid;
+      gap: 2px;
+      padding: 8px;
+    }
+
+    .chapter-link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 10px 11px;
+      border-radius: 7px;
+      color: #34424e;
+      cursor: pointer;
+      border: 0;
+      background: transparent;
+      text-align: left;
+    }
+
+    .chapter-link:hover,
+    .chapter-link.active {
+      background: #eef5ff;
+      color: var(--blue);
+    }
+
+    .chapter-link span {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .card {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--panel);
+      box-shadow: 0 10px 30px rgba(22, 32, 43, .06);
+      overflow: hidden;
+    }
+
+    .card-pad {
+      padding: 18px;
+    }
+
+    .chapter-card {
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      min-height: 360px;
+    }
+
+    .chapter-card header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 18px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .chapter-card h4 {
+      margin: 0;
+      font-size: 20px;
+    }
+
+    .badge {
+      flex: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 26px;
+      padding: 0 9px;
+      border-radius: 999px;
+      color: #fff;
+      background: var(--blue);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .badge.teal { background: var(--teal); }
+    .badge.gold { background: var(--gold); }
+    .badge.red { background: var(--red); }
+    .badge.green { background: var(--green); }
+    .badge.violet { background: var(--violet); }
+
+    .chapter-card ul {
+      margin: 0;
+      padding: 16px 18px 2px 36px;
+    }
+
+    .chapter-card li {
+      margin: 8px 0;
+    }
+
+    .mini-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      padding: 0 18px 18px;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      min-height: 28px;
+      padding: 0 9px;
+      border-radius: 999px;
+      background: #f1f4f1;
+      color: #3f4b55;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .formula-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .formula {
+      min-height: 132px;
+      padding: 16px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: #fff;
+    }
+
+    .formula strong {
+      display: block;
+      margin-bottom: 10px;
+      color: #24323e;
+    }
+
+    .formula code {
+      display: block;
+      white-space: pre-wrap;
+      color: #0f3f72;
+      font-family: Consolas, "Cascadia Mono", monospace;
+      font-size: 14px;
+      line-height: 1.55;
+    }
+
+    .diagram-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .diagram {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: #fff;
+      overflow: hidden;
+    }
+
+    .diagram svg {
+      display: block;
+      width: 100%;
+      height: 150px;
+      background: #fbfcfb;
+    }
+
+    .diagram strong {
+      display: block;
+      padding: 12px 14px 2px;
+    }
+
+    .diagram p {
+      margin: 0;
+      padding: 0 14px 14px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .quiz-board {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 300px;
+      gap: 16px;
+      align-items: start;
+    }
+
+    .quiz-card {
+      min-height: 420px;
+    }
+
+    .quiz-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+
+    .question {
+      margin: 0 0 16px;
+      font-size: 22px;
+      line-height: 1.45;
+    }
+
+    .options {
+      display: grid;
+      gap: 10px;
+    }
+
+    .option {
+      width: 100%;
+      min-height: 48px;
+      display: grid;
+      grid-template-columns: 34px 1fr;
+      gap: 10px;
+      align-items: center;
+      padding: 10px 12px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: #fff;
+      color: var(--ink);
+      text-align: left;
+      cursor: pointer;
+    }
+
+    .option .key {
+      width: 30px;
+      height: 30px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: #eff3f6;
+      font-weight: 800;
+    }
+
+    .option.correct {
+      border-color: rgba(47, 125, 50, .55);
+      background: #edf8ef;
+    }
+
+    .option.wrong {
+      border-color: rgba(179, 58, 58, .55);
+      background: #fff0f0;
+    }
+
+    .fill-answer {
+      display: grid;
+      gap: 10px;
+      max-width: 520px;
+    }
+
+    .feedback {
+      margin-top: 16px;
+      padding: 14px;
+      border-radius: var(--radius);
+      border: 1px solid var(--line);
+      background: #fbfcfb;
+      color: #2f3c46;
+    }
+
+    .feedback.good {
+      border-color: rgba(47, 125, 50, .45);
+      background: #edf8ef;
+    }
+
+    .feedback.bad {
+      border-color: rgba(179, 58, 58, .45);
+      background: #fff0f0;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+
+    .stat {
+      padding: 14px;
+      border-radius: var(--radius);
+      background: #f6f8f8;
+      border: 1px solid var(--line);
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 24px;
+      line-height: 1;
+    }
+
+    .stat span {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .mistake-list {
+      display: grid;
+      gap: 10px;
+      margin-top: 14px;
+      max-height: 290px;
+      overflow: auto;
+    }
+
+    .mistake {
+      padding: 10px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: #fff;
+      font-size: 13px;
+    }
+
+    .practice-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    details {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: #fff;
+      overflow: hidden;
+    }
+
+    summary {
+      cursor: pointer;
+      padding: 15px 16px;
+      font-weight: 800;
+      list-style: none;
+    }
+
+    summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .detail-body {
+      border-top: 1px solid var(--line);
+      padding: 16px;
+      color: #33414c;
+    }
+
+    pre {
+      margin: 12px 0 0;
+      padding: 14px;
+      overflow: auto;
+      border-radius: var(--radius);
+      background: #101923;
+      color: #e7f1f7;
+      font-family: Consolas, "Cascadia Mono", monospace;
+      font-size: 13px;
+      line-height: 1.55;
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: #fff;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 780px;
+    }
+
+    th, td {
+      padding: 12px 13px;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      background: #edf3f7;
+      color: #26343f;
+      font-size: 13px;
+    }
+
+    tr:last-child td {
+      border-bottom: 0;
+    }
+
+    .footer {
+      margin-top: 36px;
+      padding: 18px;
+      color: var(--muted);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: #fff;
+      font-size: 13px;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    @media (max-width: 980px) {
+      .hero,
+      .layout,
+      .quiz-board {
+        grid-template-columns: 1fr;
+      }
+
+      .side {
+        position: static;
+      }
+
+      .cards,
+      .practice-grid,
+      .formula-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .diagram-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .exam-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 640px) {
+      .shell,
+      .topbar-inner {
+        width: min(100% - 20px, 1240px);
+      }
+
+      .topbar-inner {
+        height: auto;
+        min-height: 64px;
+        align-items: flex-start;
+        flex-direction: column;
+        padding: 10px 0;
+      }
+
+      .hero-main {
+        padding: 20px;
+      }
+
+      .hero h2 {
+        font-size: 32px;
+      }
+
+      .diagram-grid,
+      .stats {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="#top" aria-label="返回顶部">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M5 7h14M5 12h14M5 17h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <path d="M8 4v16M16 4v16" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity=".7"/>
+          </svg>
+        </span>
+        <span>
+          <h1>数据结构与算法 2026</h1>
+          <p>理论复习 + 做题训练</p>
+        </span>
+      </a>
+      <nav class="nav" aria-label="主导航">
+        <a href="#theory">理论</a>
+        <a href="#formula">公式</a>
+        <a href="#quiz">做题</a>
+        <a href="#drawing">画图计算</a>
+        <a href="#code">代码题</a>
+        <a href="#sorting">排序表</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="shell" id="top">
+    <section class="hero">
+      <div class="hero-main">
+        <div class="eyebrow"><span class="dot"></span>按复习大纲和课堂要点整理</div>
+        <h2>把高频考点压成一张考前作战图</h2>
+        <p class="hero-copy">
+          覆盖绪论、线性表、栈和队列、树、图、查找与排序。重点偏向画图、计算、链表/栈队操作模型、遍历、哈夫曼树、最小生成树、拓扑排序、ASL 和排序复杂度。
+        </p>
+        <div class="exam-grid" aria-label="考试题型">
+          <div class="exam-tile"><strong>10</strong><span>判断题，每题 1 分</span></div>
+          <div class="exam-tile"><strong>15</strong><span>选择题，每题 2 分</span></div>
+          <div class="exam-tile"><strong>10</strong><span>填空题，每空 2 分</span></div>
+          <div class="exam-tile"><strong>5</strong><span>简答/画图/计算题</span></div>
+          <div class="exam-tile"><strong>10</strong><span>代码题，重规范</span></div>
+        </div>
+      </div>
+      <div class="hero-visual" aria-label="数据结构知识图谱">
+        <svg viewBox="0 0 680 420" role="img" aria-labelledby="mapTitle">
+          <title id="mapTitle">数据结构复习知识图谱</title>
+          <defs>
+            <filter id="soft" x="-20%" y="-20%" width="140%" height="140%">
+              <feDropShadow dx="0" dy="12" stdDeviation="12" flood-color="#1a2a34" flood-opacity=".18"/>
+            </filter>
+          </defs>
+          <rect x="0" y="0" width="680" height="420" fill="#fbfcfb"/>
+          <path d="M92 210 C150 92, 280 76, 340 162 C390 236, 506 228, 586 118" fill="none" stroke="#cbd8d2" stroke-width="3"/>
+          <path d="M90 220 C158 326, 286 340, 342 254 C397 170, 520 192, 594 312" fill="none" stroke="#cbd8d2" stroke-width="3"/>
+          <g filter="url(#soft)">
+            <rect x="240" y="150" width="200" height="100" rx="8" fill="#0054cb"/>
+            <text x="340" y="190" text-anchor="middle" fill="#fff" font-size="24" font-weight="700">数据结构</text>
+            <text x="340" y="220" text-anchor="middle" fill="#d9ecff" font-size="14">逻辑结构 + 存储结构 + 运算</text>
+          </g>
+          <g>
+            <rect x="42" y="62" width="138" height="72" rx="8" fill="#fff" stroke="#dfe5df"/>
+            <text x="111" y="92" text-anchor="middle" fill="#17212b" font-size="18" font-weight="700">线性表</text>
+            <text x="111" y="116" text-anchor="middle" fill="#65717d" font-size="13">顺序 / 链式</text>
+            <circle cx="70" cy="168" r="14" fill="#0b7a75"/><circle cx="112" cy="168" r="14" fill="#0b7a75"/><circle cx="154" cy="168" r="14" fill="#0b7a75"/>
+            <path d="M84 168h14M126 168h14" stroke="#0b7a75" stroke-width="4" stroke-linecap="round"/>
+          </g>
+          <g>
+            <rect x="502" y="48" width="136" height="78" rx="8" fill="#fff" stroke="#dfe5df"/>
+            <text x="570" y="80" text-anchor="middle" fill="#17212b" font-size="18" font-weight="700">栈队列</text>
+            <text x="570" y="104" text-anchor="middle" fill="#65717d" font-size="13">FILO / FIFO</text>
+            <rect x="530" y="148" width="78" height="20" fill="#e9f0ff" stroke="#0054cb"/>
+            <rect x="530" y="170" width="78" height="20" fill="#e9f0ff" stroke="#0054cb"/>
+            <rect x="530" y="192" width="78" height="20" fill="#e9f0ff" stroke="#0054cb"/>
+          </g>
+          <g>
+            <rect x="54" y="284" width="138" height="74" rx="8" fill="#fff" stroke="#dfe5df"/>
+            <text x="123" y="316" text-anchor="middle" fill="#17212b" font-size="18" font-weight="700">树</text>
+            <text x="123" y="340" text-anchor="middle" fill="#65717d" font-size="13">遍历 / 哈夫曼</text>
+            <circle cx="122" cy="242" r="14" fill="#9a6a00"/>
+            <circle cx="86" cy="270" r="12" fill="#9a6a00"/><circle cx="158" cy="270" r="12" fill="#9a6a00"/>
+            <path d="M113 252L94 262M131 252l19 10" stroke="#9a6a00" stroke-width="3"/>
+          </g>
+          <g>
+            <rect x="492" y="292" width="142" height="74" rx="8" fill="#fff" stroke="#dfe5df"/>
+            <text x="563" y="324" text-anchor="middle" fill="#17212b" font-size="18" font-weight="700">图</text>
+            <text x="563" y="348" text-anchor="middle" fill="#65717d" font-size="13">DFS / MST / 拓扑</text>
+            <circle cx="522" cy="244" r="12" fill="#b33a3a"/><circle cx="574" cy="230" r="12" fill="#b33a3a"/><circle cx="610" cy="268" r="12" fill="#b33a3a"/><circle cx="546" cy="286" r="12" fill="#b33a3a"/>
+            <path d="M534 241l28-8M584 238l18 22M598 272l-40 11M536 252l7 24M557 279l42-13" stroke="#b33a3a" stroke-width="3"/>
+          </g>
+          <g>
+            <rect x="260" y="300" width="160" height="72" rx="8" fill="#fff" stroke="#dfe5df"/>
+            <text x="340" y="330" text-anchor="middle" fill="#17212b" font-size="18" font-weight="700">查找与排序</text>
+            <text x="340" y="354" text-anchor="middle" fill="#65717d" font-size="13">ASL / 堆 / 稳定性</text>
+            <rect x="292" y="270" width="96" height="18" fill="#eaf6ef" stroke="#2f7d32"/>
+            <rect x="304" y="248" width="72" height="18" fill="#eaf6ef" stroke="#2f7d32"/>
+            <rect x="316" y="226" width="48" height="18" fill="#eaf6ef" stroke="#2f7d32"/>
+          </g>
+        </svg>
+      </div>
+    </section>
+
+    <section class="section" id="theory">
+      <div class="section-head">
+        <div>
+          <h3>理论速记</h3>
+          <p class="section-note">按章节聚合高频考点，优先看“重点”和“计算/画图”。</p>
+        </div>
+        <div class="toolbar">
+          <input class="input" id="searchInput" placeholder="搜索：哈夫曼 / ASL / 链表">
+          <select class="select" id="chapterFilter" aria-label="章节筛选">
+            <option value="all">全部章节</option>
+          </select>
+        </div>
+      </div>
+      <div class="layout">
+        <aside class="side" aria-label="章节目录">
+          <div class="side-title">章节目录</div>
+          <div class="chapter-list" id="chapterList"></div>
+        </aside>
+        <div class="cards" id="chapterCards"></div>
+      </div>
+    </section>
+
+    <section class="section" id="formula">
+      <div class="section-head">
+        <div>
+          <h3>公式与口诀</h3>
+          <p class="section-note">计算题常从这些地方出：树的结点关系、完全二叉树、图的边数、队列判空判满、ASL。</p>
+        </div>
+      </div>
+      <div class="formula-grid" id="formulaGrid"></div>
+    </section>
+
+    <section class="section" aria-label="图形速记">
+      <div class="section-head">
+        <div>
+          <h3>画图速记</h3>
+          <p class="section-note">把常考图形放在一起：指针、栈队、二叉树、图、堆。</p>
+        </div>
+      </div>
+      <div class="diagram-grid">
+        <article class="diagram">
+          <svg viewBox="0 0 260 150" aria-label="单链表">
+            <rect x="20" y="58" width="42" height="34" rx="6" fill="#eef5ff" stroke="#0054cb"/>
+            <text x="41" y="80" text-anchor="middle" font-size="13">L</text>
+            <path d="M62 75h28" stroke="#0054cb" stroke-width="3" marker-end="url(#arrowA)"/>
+            <defs><marker id="arrowA" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#0054cb"/></marker></defs>
+            <g fill="#fff" stroke="#0b7a75">
+              <rect x="96" y="48" width="50" height="54" rx="6"/><rect x="160" y="48" width="50" height="54" rx="6"/>
+            </g>
+            <path d="M146 75h14M210 75h22" stroke="#0b7a75" stroke-width="3" marker-end="url(#arrowB)"/>
+            <defs><marker id="arrowB" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#0b7a75"/></marker></defs>
+            <text x="121" y="69" text-anchor="middle" font-size="12">data</text><text x="121" y="88" text-anchor="middle" font-size="12">next</text>
+            <text x="185" y="69" text-anchor="middle" font-size="12">data</text><text x="185" y="88" text-anchor="middle" font-size="12">next</text>
+            <text x="237" y="80" font-size="13" fill="#65717d">NULL</text>
+          </svg>
+          <strong>单链表右侧操作</strong>
+          <p>插入/删除第 i 个位置，常先定位到 i-1 的前驱结点。</p>
+        </article>
+        <article class="diagram">
+          <svg viewBox="0 0 260 150" aria-label="循环队列">
+            <circle cx="130" cy="76" r="48" fill="#fff" stroke="#0b7a75" stroke-width="3"/>
+            <path d="M130 28v96M82 76h96M96 42l68 68M164 42l-68 68" stroke="#dbe7e3"/>
+            <circle cx="178" cy="76" r="7" fill="#0054cb"/><circle cx="130" cy="28" r="7" fill="#b33a3a"/>
+            <text x="184" y="70" font-size="13" fill="#0054cb">rear</text>
+            <text x="135" y="24" font-size="13" fill="#b33a3a">front</text>
+          </svg>
+          <strong>循环队列</strong>
+          <p>牺牲一个单元时，队满常写作 (rear + 1) % MaxSize == front。</p>
+        </article>
+        <article class="diagram">
+          <svg viewBox="0 0 260 150" aria-label="二叉树">
+            <circle cx="130" cy="28" r="16" fill="#fff4d7" stroke="#9a6a00"/><text x="130" y="33" text-anchor="middle">A</text>
+            <circle cx="82" cy="76" r="16" fill="#fff4d7" stroke="#9a6a00"/><text x="82" y="81" text-anchor="middle">B</text>
+            <circle cx="178" cy="76" r="16" fill="#fff4d7" stroke="#9a6a00"/><text x="178" y="81" text-anchor="middle">C</text>
+            <circle cx="58" cy="122" r="16" fill="#fff4d7" stroke="#9a6a00"/><text x="58" y="127" text-anchor="middle">D</text>
+            <circle cx="106" cy="122" r="16" fill="#fff4d7" stroke="#9a6a00"/><text x="106" y="127" text-anchor="middle">E</text>
+            <path d="M119 40L93 64M141 40l26 24M75 90l-11 18M89 90l11 18" stroke="#9a6a00" stroke-width="3"/>
+          </svg>
+          <strong>二叉树遍历</strong>
+          <p>先序定根，中序分左右；后序最后一个也是根。</p>
+        </article>
+        <article class="diagram">
+          <svg viewBox="0 0 260 150" aria-label="图和最小生成树">
+            <circle cx="56" cy="56" r="15" fill="#fff" stroke="#b33a3a"/><text x="56" y="61" text-anchor="middle">A</text>
+            <circle cx="132" cy="34" r="15" fill="#fff" stroke="#b33a3a"/><text x="132" y="39" text-anchor="middle">B</text>
+            <circle cx="203" cy="70" r="15" fill="#fff" stroke="#b33a3a"/><text x="203" y="75" text-anchor="middle">C</text>
+            <circle cx="102" cy="116" r="15" fill="#fff" stroke="#b33a3a"/><text x="102" y="121" text-anchor="middle">D</text>
+            <circle cx="182" cy="122" r="15" fill="#fff" stroke="#b33a3a"/><text x="182" y="127" text-anchor="middle">E</text>
+            <path d="M70 52l48-14M146 42l44 22M191 80l-76 30M117 116h50M67 67l25 38M132 50l-27 54" stroke="#c6d0cc" stroke-width="3"/>
+            <path d="M70 52l48-14M191 80l-76 30M117 116h50" stroke="#b33a3a" stroke-width="5"/>
+          </svg>
+          <strong>最小生成树</strong>
+          <p>Prim 从点扩张，Kruskal 从边挑选，不能形成回路。</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="quiz">
+      <div class="section-head">
+        <div>
+          <h3>做题训练</h3>
+          <p class="section-note">题库混合判断、选择和填空。错题会记录在本浏览器本地。</p>
+        </div>
+        <div class="toolbar">
+          <select class="select" id="quizScope" aria-label="题库范围">
+            <option value="all">全部范围</option>
+          </select>
+          <button class="btn primary" id="newQuizBtn">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            换一题
+          </button>
+        </div>
+      </div>
+      <div class="quiz-board">
+        <article class="card quiz-card">
+          <div class="card-pad">
+            <div class="quiz-meta" id="quizMeta"></div>
+            <p class="question" id="questionText"></p>
+            <div id="answerArea"></div>
+            <div id="feedback" class="feedback hidden"></div>
+            <div class="toolbar" style="margin-top:16px">
+              <button class="btn" id="showAnswerBtn">
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6S2 12 2 12Z" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2"/></svg>
+                显示答案
+              </button>
+              <button class="btn" id="markBtn">
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M19 21l-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+                加入错题
+              </button>
+            </div>
+          </div>
+        </article>
+        <aside class="card">
+          <div class="card-pad">
+            <div class="stats">
+              <div class="stat"><strong id="doneCount">0</strong><span>已答</span></div>
+              <div class="stat"><strong id="rightCount">0</strong><span>正确</span></div>
+              <div class="stat"><strong id="wrongCount">0</strong><span>错题</span></div>
+            </div>
+            <div class="toolbar" style="margin-top:14px">
+              <button class="btn" id="resetStatsBtn">清空记录</button>
+            </div>
+            <div class="mistake-list" id="mistakeList"></div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section" id="drawing">
+      <div class="section-head">
+        <div>
+          <h3>画图与计算题</h3>
+          <p class="section-note">简答题常含画图和计算。先自己写步骤，再展开答案对照。</p>
+        </div>
+      </div>
+      <div class="practice-grid" id="practiceGrid"></div>
+    </section>
+
+    <section class="section" id="code">
+      <div class="section-head">
+        <div>
+          <h3>代码题模板</h3>
+          <p class="section-note">重点是链表操作、栈队基本操作、二叉树递归遍历。考场上先写边界，再写指针移动。</p>
+        </div>
+      </div>
+      <div class="practice-grid" id="codeGrid"></div>
+    </section>
+
+    <section class="section" id="sorting">
+      <div class="section-head">
+        <div>
+          <h3>排序算法性能表</h3>
+          <p class="section-note">大纲要求列出稳定性和时间复杂度。堆排序重点会考初始堆。</p>
+        </div>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>算法</th>
+              <th>平均时间</th>
+              <th>最好</th>
+              <th>最坏</th>
+              <th>空间</th>
+              <th>稳定性</th>
+              <th>记忆点</th>
+            </tr>
+          </thead>
+          <tbody id="sortTable"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <footer class="footer">
+      内容根据《2026数据结构复习大纲》、第 2/3/7/8/9 章课堂要点、《数据结构与算法复习资料2026-06》和《模拟卷1答案》整理。网页为离线静态文件，答题记录保存在本机浏览器 localStorage。
+    </footer>
+  </main>
+
+  <script>
+    const chapters = [
+      {
+        id: "intro",
+        title: "绪论",
+        level: "基础",
+        color: "",
+        tags: ["三要素", "逻辑结构", "复杂度"],
+        points: [
+          "数据结构三要素：逻辑结构、存储结构、数据运算。",
+          "逻辑结构：集合、线性、树形、图形；存储结构：顺序、链式、索引、散列。",
+          "算法五大特征：有穷性、确定性、可行性、输入、输出。",
+          "时间复杂度抓最高阶：循环嵌套相乘，顺序语句取最大。"
+        ]
+      },
+      {
+        id: "list",
+        title: "线性表",
+        level: "重点",
+        color: "teal",
+        tags: ["顺序表", "单链表", "双链表", "循环链表"],
+        points: [
+          "顺序表支持随机存取，按位查找 O(1)，插入/删除因移动元素通常为 O(n)。",
+          "单链表结点由 data 和 next 组成，带头结点时第 i 位操作常先找第 i-1 位前驱。",
+          "头插法：新结点插到表头，生成顺序与输入相反；尾插法：尾指针 r 始终指向尾结点，生成顺序与输入相同。",
+          "循环单链表尾结点判断：p->next == L；循环双链表可由 L->prior 立即找到尾结点。"
+        ]
+      },
+      {
+        id: "stackqueue",
+        title: "栈和队列",
+        level: "重点",
+        color: "gold",
+        tags: ["顺序栈", "链栈", "循环队列", "中缀转后缀"],
+        points: [
+          "栈只能在栈顶插入和删除，FILO；队列队尾入、队头出，FIFO。",
+          "顺序栈：入栈 top++ 后赋值；出栈取 data[top] 后 top--。",
+          "链栈本质是带头结点单链表，首结点作为栈顶，入栈用头插，出栈删首结点。",
+          "循环队列入队 rear=(rear+1)%MaxSize；牺牲一个空间时，队满条件为 (rear+1)%MaxSize==front。",
+          "中缀转后缀：栈内优先级高或相同且左结合时先出栈；遇左括号入栈，遇右括号弹到左括号。"
+        ]
+      },
+      {
+        id: "tree",
+        title: "树和二叉树",
+        level: "画图重点",
+        color: "red",
+        tags: ["遍历", "转换", "哈夫曼", "递归"],
+        points: [
+          "树的度之和等于边数，n 个结点的树有 n-1 条边。",
+          "二叉树叶子数公式：n0 = n2 + 1；完全二叉树适合用顺序存储，下标关系常考。",
+          "树的存储：双亲表示法找双亲方便，孩子表示法找孩子方便，孩子兄弟表示法便于树与二叉树转换。",
+          "二叉树遍历：先序 NLR，中序 LNR，后序 LRN，层次遍历用队列。",
+          "哈夫曼树每次选最小和次小权值合并；哈夫曼编码不能出现一个编码是另一个编码的前缀。"
+        ]
+      },
+      {
+        id: "graph",
+        title: "图",
+        level: "计算重点",
+        color: "green",
+        tags: ["邻接矩阵", "邻接表", "DFS/BFS", "MST", "拓扑"],
+        points: [
+          "图 G=(V,E)，V 非空，E 可空；无向图边数 = 度数和 / 2。",
+          "邻接矩阵唯一，空间 O(n^2)，适合稠密图；邻接表不唯一，适合稀疏图，空间无向 O(n+2e)、有向 O(n+e)。",
+          "DFS 借助递归/栈向深处走，BFS 借助队列按层扩展。",
+          "Prim 从一个顶点出发扩张最小生成树；Kruskal 按边权从小到大选边，跳过形成回路的边。",
+          "拓扑排序反复删除入度为 0 的顶点；有环图不能完成拓扑排序。关键路径中 d(a)=l(a)-e(a)，d(a)=0 为关键活动。"
+        ]
+      },
+      {
+        id: "searchsort",
+        title: "查找和排序",
+        level: "高频计算",
+        color: "violet",
+        tags: ["折半查找", "BST", "AVL", "哈希", "堆排序"],
+        points: [
+          "折半查找判定树：根下标 = (low + high) / 2，成功比较次数等于内部结点层次，失败比较次数等于外部结点层次 - 1。",
+          "BST 左子树小于根、右子树大于根，中序遍历为递增序列，插入总是作为叶结点。",
+          "AVL 平衡因子 = 左子树高度 - 右子树高度，绝对值不超过 1；调整看最小不平衡子树。",
+          "哈希冲突可用线性探测或链地址法，ASL 按探测/比较次数求平均。",
+          "堆排序先建初始堆，从 floor(n/2) 结点向前筛选；大根堆根结点为最大关键字。"
+        ]
+      }
+    ];
+
+    const formulas = [
+      ["树", "边数 = n - 1\n度之和 = n - 1\nn = n0 + n1 + ... + nm"],
+      ["二叉树", "n0 = n2 + 1\nn = n0 + n1 + n2\n度之和 = n1 + 2n2 = n - 1"],
+      ["完全二叉树", "第 i 个结点：\n双亲 floor(i/2)\n左孩子 2i\n右孩子 2i + 1\n高度 floor(log2 n) + 1"],
+      ["循环队列", "入队：rear=(rear+1)%M\n出队：front=(front+1)%M\n队空：front==rear\n队满：(rear+1)%M==front"],
+      ["图", "无向图：e = 度之和 / 2\n完全无向图：n(n-1)/2\n完全有向图：n(n-1)"],
+      ["查找 ASL", "顺序查找成功：ASL=(n+1)/2\n折半成功：各层比较次数平均\n哈希成功：总比较次数 / 关键字个数"]
+    ];
+
+    const quiz = [
+      {scope:"intro", type:"choice", q:"在数据结构中，与具体计算机存储方式无关的是哪一种结构？", options:["存储结构","逻辑结构","物理结构","索引结构"], answer:"B", explain:"逻辑结构描述数据元素之间的逻辑关系，和机器存储无关。"},
+      {scope:"intro", type:"judge", q:"算法必须满足有穷性、确定性、可行性，并且有输入和输出。", answer:"T", explain:"这是算法五大特征。"},
+      {scope:"intro", type:"fill", q:"数据结构三要素是逻辑结构、存储结构和____。", answer:"数据运算", aliases:["运算","数据的运算"], explain:"三要素常写为逻辑结构、存储结构、数据运算。"},
+      {scope:"list", type:"choice", q:"顺序表按位置查找元素的时间复杂度通常是？", options:["O(1)","O(log n)","O(n)","O(n^2)"], answer:"A", explain:"顺序表使用连续数组，可随机存取。"},
+      {scope:"list", type:"judge", q:"单链表头插法创建出的结点顺序与输入逻辑顺序相同。", answer:"F", explain:"头插法每次插到表头，顺序相反；尾插法顺序相同。"},
+      {scope:"list", type:"choice", q:"在带头结点单链表中删除第 i 个结点，通常先让指针 p 定位到哪里？", options:["第 i 个结点","第 i-1 个结点","尾结点","首结点的后继"], answer:"B", explain:"删除和右侧插入都需要前驱指针。"},
+      {scope:"list", type:"fill", q:"循环单链表中，若头指针为 L，判断 p 是否为尾结点的条件是____。", answer:"p->next==L", aliases:["p->next == L"], explain:"循环单链表尾结点的 next 指向头结点。"},
+      {scope:"stackqueue", type:"choice", q:"栈的基本特点是？", options:["先进先出","先进后出","随机存取","按关键字访问"], answer:"B", explain:"栈是 FILO/LIFO。"},
+      {scope:"stackqueue", type:"choice", q:"循环队列入队时 rear 的变化通常写作？", options:["rear=rear+1","rear=(rear+1)%m","rear=(front+1)%m","front=(front+1)%m"], answer:"B", explain:"数组环形使用取模回绕。"},
+      {scope:"stackqueue", type:"judge", q:"链栈常把首结点作为栈顶，因为在首结点位置入栈、出栈方便。", answer:"T", explain:"链栈使用头插和删除首结点模型。"},
+      {scope:"stackqueue", type:"fill", q:"队列的插入在队尾，删除在队头，特点是____。", answer:"FIFO", aliases:["先进先出"], explain:"队列 First In First Out。"},
+      {scope:"tree", type:"choice", q:"一棵二叉树有 10 个度为 2 的结点，则叶子结点数为？", options:["9","10","11","20"], answer:"C", explain:"二叉树 n0 = n2 + 1，所以 n0=11。"},
+      {scope:"tree", type:"judge", q:"哈夫曼树中可能存在度为 1 的结点。", answer:"F", explain:"哈夫曼树每次合并两棵树，不存在度为 1 的结点。"},
+      {scope:"tree", type:"choice", q:"已知二叉树前序和中序序列，重建二叉树时先根据哪个序列确定根？", options:["前序","中序","层序","任意"], answer:"A", explain:"前序第一个是根，后序最后一个是根；中序用于划分左右子树。"},
+      {scope:"tree", type:"fill", q:"二叉树的中序遍历顺序是左子树、____、右子树。", answer:"根", aliases:["根结点","根节点"], explain:"中序 LNR。"},
+      {scope:"graph", type:"choice", q:"n 个顶点的完全无向图有多少条边？", options:["n-1","n(n-1)/2","n(n-1)","2n"], answer:"B", explain:"无向边由两个不同顶点决定。"},
+      {scope:"graph", type:"choice", q:"邻接矩阵更适合存储哪类图？", options:["稀疏图","稠密图","有向无环图","树"], answer:"B", explain:"邻接矩阵空间 O(n^2)，边多时更合适。"},
+      {scope:"graph", type:"judge", q:"拓扑排序序列一定唯一。", answer:"F", explain:"拓扑序列通常不唯一，除非题目给定选择规则。"},
+      {scope:"graph", type:"fill", q:"无向图的边数等于所有顶点____之和的一半。", answer:"度", aliases:["度数"], explain:"e = 度数和 / 2。"},
+      {scope:"searchsort", type:"choice", q:"二叉排序树的哪种遍历可以得到递增有序序列？", options:["先序","中序","后序","层次"], answer:"B", explain:"BST 的中序遍历递增。"},
+      {scope:"searchsort", type:"choice", q:"下列排序算法中，通常不稳定的是？", options:["冒泡排序","直接插入排序","归并排序","快速排序"], answer:"D", explain:"快速排序会跨位置交换，通常不稳定。"},
+      {scope:"searchsort", type:"judge", q:"堆排序建初始堆时，应从 floor(n/2) 结点开始向前筛选调整。", answer:"T", explain:"完全二叉树中 floor(n/2) 之后为叶结点。"},
+      {scope:"searchsort", type:"fill", q:"折半查找不成功时，比较次数等于外部结点层次____。", answer:"减1", aliases:["减 1","-1"], explain:"资料中强调失败比较次数为外部结点层次减 1。"},
+      {scope:"searchsort", type:"choice", q:"哈希表发生冲突时，模拟卷中提到最常用的方法是？", options:["除留余数法","线性探测再散列","数字分析法","折叠法"], answer:"B", explain:"除留余数法是构造散列函数，线性探测再散列是处理冲突方法。"}
+    ];
+
+    const practices = [
+      {
+        title: "折半查找比较次数",
+        body: "有序表 (12,18,24,35,47,50,62,83,90,115,134)，查找 90，求比较次数。",
+        answer: "n=11，第一次 mid 指向 50；90>50，查右半区。第二次 mid 指向 90，查找成功。比较 2 次。"
+      },
+      {
+        title: "Prim 最小生成树",
+        body: "顶点 {A,B,C,D,E}，边为 (A,B,2)、(A,C,5)、(B,C,4)、(B,D,6)、(C,D,3)、(C,E,7)、(D,E,1)，从 A 开始构造 MST。",
+        answer: "从 A 选最小边 (A,B,2)；集合 {A,B} 到外部最小边 (B,C,4)；集合 {A,B,C} 到外部最小边 (C,D,3)；集合 {A,B,C,D} 到外部最小边 (D,E,1)。"
+      },
+      {
+        title: "哈夫曼树构造",
+        body: "权值 A=5、B=2、C=7、D=3，构造哈夫曼树并判断编码是否前缀冲突。",
+        answer: "每次选最小和次小：2 与 3 合并为 5；再将 5 与 A 的 5 合并为 10；最后 7 与 10 合并为 17。编码只要来自同一棵哈夫曼树，任一字符编码都不会是另一字符编码的前缀。"
+      },
+      {
+        title: "链地址法 ASL",
+        body: "关键字 19,14,23,1,68,20,84,27,55,11,10,79，H(key)=key%13，链地址法处理冲突，求成功 ASL。",
+        answer: "桶 1: 14,1,27,79；桶 3: 68,55；桶 6: 19,84；桶 7: 20；桶 10: 23,10；桶 11: 11。比较次数总和 21，关键字 12 个，ASL=21/12=1.75。"
+      },
+      {
+        title: "二叉树叶子数",
+        body: "若二叉树有 n2=10 个度为 2 的结点，n1=5 个度为 1 的结点，求 n0。",
+        answer: "二叉树恒有 n0=n2+1，所以 n0=11。n1 不影响叶子数公式。"
+      },
+      {
+        title: "拓扑排序判断",
+        body: "一个有向图在删除若干入度为 0 的顶点后，剩余顶点都存在前驱，能否继续拓扑排序？说明原因。",
+        answer: "不能继续。拓扑排序每步必须选择入度为 0 的顶点，若剩余图没有这样的顶点，说明存在环或约束无法消除。"
+      }
+    ];
+
+    const codeTemplates = [
+      {
+        title: "删除带头结点单链表中所有值为 x 的结点",
+        answer: `void Delete(LinkList L, ElemType x) {
+  if (L == NULL) return;
+  LNode *pre = L;
+  LNode *p = L->next;
+  while (p != NULL) {
+    if (p->data == x) {
+      LNode *q = p;
+      pre->next = p->next;
+      p = p->next;
+      free(q);
+    } else {
+      pre = p;
+      p = p->next;
+    }
+  }
+}`
+      },
+      {
+        title: "单链表尾插法建表",
+        answer: `void CreateListR(LinkList &L, ElemType a[], int n) {
+  L = (LNode *)malloc(sizeof(LNode));
+  L->next = NULL;
+  LNode *r = L;
+  for (int i = 0; i < n; i++) {
+    LNode *s = (LNode *)malloc(sizeof(LNode));
+    s->data = a[i];
+    r->next = s;
+    r = s;
+  }
+  r->next = NULL;
+}`
+      },
+      {
+        title: "顺序栈入栈与出栈",
+        answer: `bool Push(SqStack &s, ElemType e) {
+  if (s.top == MaxSize - 1) return false;
+  s.top++;
+  s.data[s.top] = e;
+  return true;
+}
+
+bool Pop(SqStack &s, ElemType &e) {
+  if (s.top == -1) return false;
+  e = s.data[s.top];
+  s.top--;
+  return true;
+}`
+      },
+      {
+        title: "循环队列入队与出队",
+        answer: `bool enQueue(SqQueue &q, ElemType e) {
+  if ((q.rear + 1) % MaxSize == q.front) return false;
+  q.rear = (q.rear + 1) % MaxSize;
+  q.data[q.rear] = e;
+  return true;
+}
+
+bool deQueue(SqQueue &q, ElemType &e) {
+  if (q.front == q.rear) return false;
+  q.front = (q.front + 1) % MaxSize;
+  e = q.data[q.front];
+  return true;
+}`
+      },
+      {
+        title: "二叉树递归遍历",
+        answer: `void PreOrder(BTNode *b) {
+  if (b != NULL) {
+    visit(b);
+    PreOrder(b->lchild);
+    PreOrder(b->rchild);
+  }
+}
+
+void InOrder(BTNode *b) {
+  if (b != NULL) {
+    InOrder(b->lchild);
+    visit(b);
+    InOrder(b->rchild);
+  }
+}`
+      },
+      {
+        title: "BST 查找基本思想",
+        answer: `BTNode *SearchBST(BTNode *t, KeyType k) {
+  if (t == NULL || t->key == k) return t;
+  if (k < t->key) return SearchBST(t->lchild, k);
+  return SearchBST(t->rchild, k);
+}`
+      }
+    ];
+
+    const sorts = [
+      ["直接插入排序", "O(n^2)", "O(n)", "O(n^2)", "O(1)", "稳定", "近乎有序时表现好"],
+      ["希尔排序", "依增量而定", "O(n)", "约 O(n^2)", "O(1)", "不稳定", "分组插入，缩小增量"],
+      ["冒泡排序", "O(n^2)", "O(n)", "O(n^2)", "O(1)", "稳定", "相邻交换，可提前结束"],
+      ["快速排序", "O(n log n)", "O(n log n)", "O(n^2)", "O(log n)", "不稳定", "枢轴划分，平均最快一类"],
+      ["简单选择排序", "O(n^2)", "O(n^2)", "O(n^2)", "O(1)", "不稳定", "每趟选最小/最大"],
+      ["堆排序", "O(n log n)", "O(n log n)", "O(n log n)", "O(1)", "不稳定", "初始堆从 floor(n/2) 调整"],
+      ["二路归并排序", "O(n log n)", "O(n log n)", "O(n log n)", "O(n)", "稳定", "分治合并，空间较多"],
+      ["基数排序", "O(d(n+r))", "O(d(n+r))", "O(d(n+r))", "O(n+r)", "稳定", "按位分配收集"]
+    ];
+
+    let currentQuestion = null;
+    let stats = JSON.parse(localStorage.getItem("dsReviewStats") || '{"done":0,"right":0,"wrong":0,"mistakes":[]}');
+
+    function badge(text, color = "") {
+      return `<span class="badge ${color}">${text}</span>`;
+    }
+
+    function renderChapters() {
+      const filter = document.getElementById("chapterFilter");
+      const list = document.getElementById("chapterList");
+      const cards = document.getElementById("chapterCards");
+      filter.innerHTML = '<option value="all">全部章节</option>' + chapters.map(c => `<option value="${c.id}">${c.title}</option>`).join("");
+      document.getElementById("quizScope").innerHTML = '<option value="all">全部范围</option>' + chapters.map(c => `<option value="${c.id}">${c.title}</option>`).join("");
+      list.innerHTML = chapters.map(c => `<button class="chapter-link" data-id="${c.id}">${c.title}<span>${c.level}</span></button>`).join("");
+      list.querySelectorAll(".chapter-link").forEach(btn => {
+        btn.addEventListener("click", () => {
+          filter.value = btn.dataset.id;
+          applyChapterFilters();
+          document.getElementById("theory").scrollIntoView({behavior:"smooth"});
+        });
+      });
+      cards.innerHTML = chapters.map(c => `
+        <article class="card chapter-card" data-id="${c.id}" data-keywords="${[c.title, c.level, ...c.tags, ...c.points].join(" ")}">
+          <header>
+            <div>
+              <h4>${c.title}</h4>
+              <p class="section-note">${c.tags.join(" / ")}</p>
+            </div>
+            ${badge(c.level, c.color)}
+          </header>
+          <ul>${c.points.map(p => `<li>${p}</li>`).join("")}</ul>
+          <div class="mini-row">${c.tags.map(t => `<span class="pill">${t}</span>`).join("")}</div>
+        </article>
+      `).join("");
+    }
+
+    function applyChapterFilters() {
+      const keyword = document.getElementById("searchInput").value.trim().toLowerCase();
+      const scope = document.getElementById("chapterFilter").value;
+      document.querySelectorAll(".chapter-card").forEach(card => {
+        const matchScope = scope === "all" || card.dataset.id === scope;
+        const matchText = !keyword || card.dataset.keywords.toLowerCase().includes(keyword);
+        card.classList.toggle("hidden", !(matchScope && matchText));
+      });
+      document.querySelectorAll(".chapter-link").forEach(btn => btn.classList.toggle("active", btn.dataset.id === scope));
+    }
+
+    function renderFormulas() {
+      document.getElementById("formulaGrid").innerHTML = formulas.map(([title, text]) => `
+        <article class="formula">
+          <strong>${title}</strong>
+          <code>${text}</code>
+        </article>
+      `).join("");
+    }
+
+    function renderDetails() {
+      document.getElementById("practiceGrid").innerHTML = practices.map(item => `
+        <details>
+          <summary>${item.title}</summary>
+          <div class="detail-body">
+            <p><strong>题目：</strong>${item.body}</p>
+            <p><strong>参考：</strong>${item.answer}</p>
+          </div>
+        </details>
+      `).join("");
+      document.getElementById("codeGrid").innerHTML = codeTemplates.map(item => `
+        <details>
+          <summary>${item.title}</summary>
+          <div class="detail-body">
+            <pre><code>${escapeHtml(item.answer)}</code></pre>
+          </div>
+        </details>
+      `).join("");
+    }
+
+    function renderSorts() {
+      document.getElementById("sortTable").innerHTML = sorts.map(row => `
+        <tr>${row.map(cell => `<td>${cell}</td>`).join("")}</tr>
+      `).join("");
+    }
+
+    function escapeHtml(text) {
+      return text.replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
+    }
+
+    function pickQuestion() {
+      const scope = document.getElementById("quizScope").value;
+      const pool = quiz.filter(q => scope === "all" || q.scope === scope);
+      currentQuestion = pool[Math.floor(Math.random() * pool.length)];
+      renderQuestion();
+    }
+
+    function renderQuestion() {
+      const chapter = chapters.find(c => c.id === currentQuestion.scope);
+      document.getElementById("quizMeta").innerHTML = `${badge(chapter.title, chapter.color)} ${badge(currentQuestion.type === "choice" ? "选择" : currentQuestion.type === "judge" ? "判断" : "填空", "")}`;
+      document.getElementById("questionText").textContent = currentQuestion.q;
+      document.getElementById("feedback").className = "feedback hidden";
+      const area = document.getElementById("answerArea");
+      if (currentQuestion.type === "choice") {
+        area.innerHTML = `<div class="options">${currentQuestion.options.map((op, idx) => {
+          const key = "ABCD"[idx];
+          return `<button class="option" data-answer="${key}"><span class="key">${key}</span><span>${op}</span></button>`;
+        }).join("")}</div>`;
+        area.querySelectorAll(".option").forEach(btn => btn.addEventListener("click", () => answer(btn.dataset.answer)));
+      } else if (currentQuestion.type === "judge") {
+        area.innerHTML = `
+          <div class="options">
+            <button class="option" data-answer="T"><span class="key">T</span><span>正确</span></button>
+            <button class="option" data-answer="F"><span class="key">F</span><span>错误</span></button>
+          </div>`;
+        area.querySelectorAll(".option").forEach(btn => btn.addEventListener("click", () => answer(btn.dataset.answer)));
+      } else {
+        area.innerHTML = `
+          <div class="fill-answer">
+            <input class="input" id="fillInput" placeholder="填写答案">
+            <button class="btn primary" id="submitFill">提交</button>
+          </div>`;
+        document.getElementById("submitFill").addEventListener("click", () => answer(document.getElementById("fillInput").value));
+        document.getElementById("fillInput").addEventListener("keydown", e => { if (e.key === "Enter") answer(e.target.value); });
+      }
+    }
+
+    function normalize(text) {
+      return String(text).replace(/\s+/g, "").replace(/；/g, ";").replace(/，/g, ",").toLowerCase();
+    }
+
+    function isCorrect(value) {
+      if (currentQuestion.type === "fill") {
+        const accepted = [currentQuestion.answer, ...(currentQuestion.aliases || [])].map(normalize);
+        return accepted.includes(normalize(value));
+      }
+      return value === currentQuestion.answer;
+    }
+
+    function answer(value) {
+      const ok = isCorrect(value);
+      stats.done += 1;
+      if (ok) stats.right += 1;
+      if (!ok) addMistake(currentQuestion);
+      saveStats();
+      if (currentQuestion.type !== "fill") {
+        document.querySelectorAll(".option").forEach(btn => {
+          btn.disabled = true;
+          if (btn.dataset.answer === currentQuestion.answer) btn.classList.add("correct");
+          if (btn.dataset.answer === value && !ok) btn.classList.add("wrong");
+        });
+      }
+      showFeedback(ok);
+    }
+
+    function showFeedback(ok = null) {
+      const feedback = document.getElementById("feedback");
+      const answerText = currentQuestion.type === "choice"
+        ? `${currentQuestion.answer}. ${currentQuestion.options["ABCD".indexOf(currentQuestion.answer)]}`
+        : currentQuestion.answer;
+      feedback.className = `feedback ${ok === true ? "good" : ok === false ? "bad" : ""}`;
+      feedback.innerHTML = `<strong>${ok === true ? "答对了" : ok === false ? "需要再看一眼" : "参考答案"}：</strong>${answerText}<br>${currentQuestion.explain}`;
+    }
+
+    function addMistake(q) {
+      const exists = stats.mistakes.some(item => item.q === q.q);
+      if (!exists) stats.mistakes.unshift({q: q.q, answer: q.answer, explain: q.explain, scope: q.scope});
+      stats.wrong = stats.mistakes.length;
+    }
+
+    function saveStats() {
+      stats.mistakes = stats.mistakes.slice(0, 20);
+      stats.wrong = stats.mistakes.length;
+      localStorage.setItem("dsReviewStats", JSON.stringify(stats));
+      renderStats();
+    }
+
+    function renderStats() {
+      document.getElementById("doneCount").textContent = stats.done;
+      document.getElementById("rightCount").textContent = stats.right;
+      document.getElementById("wrongCount").textContent = stats.wrong;
+      const list = document.getElementById("mistakeList");
+      list.innerHTML = stats.mistakes.length ? stats.mistakes.map(item => {
+        const chapter = chapters.find(c => c.id === item.scope);
+        return `<div class="mistake"><strong>${chapter ? chapter.title : "错题"}</strong><br>${item.q}<br><span style="color:#65717d">答案：${item.answer}。${item.explain}</span></div>`;
+      }).join("") : '<div class="mistake">暂无错题记录。</div>';
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      renderChapters();
+      renderFormulas();
+      renderDetails();
+      renderSorts();
+      renderStats();
+      pickQuestion();
+      document.getElementById("searchInput").addEventListener("input", applyChapterFilters);
+      document.getElementById("chapterFilter").addEventListener("change", applyChapterFilters);
+      document.getElementById("quizScope").addEventListener("change", pickQuestion);
+      document.getElementById("newQuizBtn").addEventListener("click", pickQuestion);
+      document.getElementById("showAnswerBtn").addEventListener("click", () => showFeedback());
+      document.getElementById("markBtn").addEventListener("click", () => { addMistake(currentQuestion); saveStats(); showFeedback(false); });
+      document.getElementById("resetStatsBtn").addEventListener("click", () => {
+        stats = {done:0, right:0, wrong:0, mistakes:[]};
+        saveStats();
+      });
+    });
+  </script>
+</body>
+</html>
